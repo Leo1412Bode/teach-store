@@ -8,6 +8,7 @@ function App() {
   return (
     <div>
       <h1>Hello from Cuba</h1>
+      <h2>Maricas</h2>
     </div>
   );
 }
