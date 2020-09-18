@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans");
+
 :root {
   --primaryColor: #5fb7ea;
   --primaryRGBA: rgba(0, 0, 0, 0.3);
@@ -22,7 +24,6 @@ body {
   background: var(--mainGrey) !important;
   color: var(--mainBlack);
 }
-
 .main-link {
   padding: 0.5rem 1rem;
   background: var(--primaryColor);
@@ -35,10 +36,9 @@ body {
   border: none;
   transition: var(--mainTransition);
 }
-
 .main-link:hover {
   background: var(--darkGrey);
-  color: var(--mainWhite);
   text-decoration: none;
+  color: var(--primaryColor);
   outline-color: var(--darkGrey);
 }

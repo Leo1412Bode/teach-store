@@ -5,16 +5,16 @@ export const socialData = [
   {
     id: 1,
     icon: <FaFacebook className="icon" />,
-    url: "https://www.facebook.com/",
+    url: "https://www.facebook.com"
   },
   {
     id: 2,
     icon: <FaTwitter className="icon" />,
-    url: "https://www.twitter.com",
+    url: "https://www.facebook.com"
   },
   {
     id: 3,
     icon: <FaLinkedin className="icon" />,
-    url: "https://www.linkedin.com",
-  },
+    url: "https://www.facebook.com"
+  }
 ];

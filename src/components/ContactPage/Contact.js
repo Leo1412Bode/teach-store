@@ -1,6 +1,5 @@
 import React from "react";
 import Title from "../Title";
-
 export default function Contact() {
   return (
     <section className="py-5">
@@ -9,25 +8,25 @@ export default function Contact() {
           <Title title="contact us" />
           <form
             className="mt-5"
-            action="https://formspree.io/leo1412bode@gmail.com"
+            action="https://formspree.io/learncodetutorial@gmail.com"
             method="POST"
           >
-            {/* Name */}
+            {/* first */}
             <div className="form-group">
               <input
                 type="text"
                 name="firstName"
                 className="form-control"
-                placeholder="your Name"
+                placeholder="john smith"
               />
             </div>
-            {/* Email */}
+            {/* email */}
             <div className="form-group">
               <input
                 type="email"
                 name="email"
                 className="form-control"
-                placeholder="@email.com"
+                placeholder="email@email.com"
               />
             </div>
             {/* subject */}
@@ -36,24 +35,24 @@ export default function Contact() {
                 type="text"
                 name="subject"
                 className="form-control"
-                placeholder="import!!"
+                placeholder="important!!!!"
               />
             </div>
             {/* message */}
-            <div className="form-group">
+            <div className="form">
               <textarea
                 name="message"
                 className="form-control"
-                row="10"
-                placeholder="Your messagito"
+                rows="10"
+                placeholder="hello there buddy"
               />
             </div>
             {/* submit */}
             <div className="form-group mt-3">
               <input
-                className="form-control bg-primary text-white"
                 type="submit"
                 value="Send"
+                className="form-control bg-primary text-white"
               />
             </div>
           </form>

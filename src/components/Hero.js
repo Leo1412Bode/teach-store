@@ -18,10 +18,10 @@ const HeroWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: ${(props) => (props.max ? "100vh" : "60vh")};
+  min-height: ${props => (props.max ? "100vh" : "60vh")};
   color: var(--mainWhite);
   background: linear-gradient(var(--primaryRGBA), var(--primaryRGBA)),
-    url(${(props) => props.img}) center/cover no-repeat;
+    url(${props => props.img}) center/cover no-repeat;
   .title {
     padding-top: 2rem;
     font-size: 3.5rem;
@@ -32,5 +32,5 @@ const HeroWrapper = styled.div`
 `;
 
 Hero.defaultProps = {
-  img: mainBcg,
+  img: mainBcg
 };

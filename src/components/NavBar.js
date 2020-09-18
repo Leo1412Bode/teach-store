@@ -1,35 +1,27 @@
 import React from "react";
-import { ProductConsumer } from "../context/Context";
 import { FaBars, FaCartPlus } from "react-icons/fa";
-import logo from "../images/logo.svg";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
-
-export default function NavBar() {
+import { ProductConsumer } from "../context/Context";
+import logo from "../images/logo.svg";
+export default function Navbar() {
   return (
-    <>
-      <ProductConsumer>
-        {(value) => {
-          const { cartItems, handleSideBar, handleSideCart } = value;
-
-          return (
-            <NavWrapper>
-              <div className="nav-center">
-                <FaBars className="nav-icon" onClick={handleSideBar} />
-                <Link to="/">
-                  <img src={logo} alt="tech store logo" />
-                </Link>
-
-                <div className="nav-cart">
-                  <FaCartPlus className="nav-icon" onClick={handleSideCart} />
-                  <div className="cart-items">{cartItems}</div>
-                </div>
+    <ProductConsumer>
+      {value => {
+        const { cartItems, handleSidebar, handleCart } = value;
+        return (
+          <NavWrapper>
+            <div className="nav-center">
+              <FaBars className="nav-icon" onClick={handleSidebar} />
+              <img src={logo} alt="tech store logo" />
+              <div className="nav-cart">
+                <FaCartPlus className="nav-icon" onClick={handleCart} />
+                <div className="cart-items">{cartItems}</div>
               </div>
-            </NavWrapper>
-          );
-        }}
-      </ProductConsumer>
-    </>
+            </div>
+          </NavWrapper>
+        );
+      }}
+    </ProductConsumer>
   );
 }
 
@@ -46,7 +38,7 @@ const NavWrapper = styled.nav`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1600px;
+    max-width: 1170px;
     margin: 0 auto;
   }
   .nav-icon {
@@ -55,9 +47,6 @@ const NavWrapper = styled.nav`
   }
   .nav-cart {
     position: relative;
-  }
-  img {
-    cursor: pointer;
   }
   .cart-items {
     background: var(--primaryColor);

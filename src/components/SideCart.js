@@ -1,15 +1,14 @@
 import React from "react";
 import { ProductConsumer } from "../context/Context";
 import styled from "styled-components";
-
 export default function SideCart() {
   return (
     <ProductConsumer>
-      {(value) => {
-        const { cartOpen, closeCart } = value;
+      {value => {
+        const { cartOpen, closeCart, cart } = value;
         return (
           <CartWrapper show={cartOpen} onClick={closeCart}>
-            <p>Cart items</p>
+            <p>cart items</p>
           </CartWrapper>
         );
       }}
@@ -17,35 +16,18 @@ export default function SideCart() {
   );
 }
 
-const CartWrapper = styled.nav`
+const CartWrapper = styled.div`
   position: fixed;
-  top: 61 px;
+  top: 60px;
   right: 0;
   width: 100%;
   height: 100%;
   background: var(--mainGrey);
   z-index: 1;
+  transform: ${props => (props.show ? "translateX(0)" : "translateX(100%)")};
   border-left: 4px solid var(--primaryColor);
   transition: var(--mainTransition);
-  transform: ${(props) => (props.show ? "translateX(0)" : "translateX(200%)")};
   @media (min-width: 576px) {
     width: 20rem;
-  }
-
-  .sidebar-link {
-    display: block;
-    font-size: 1.5rem;
-    text-transform: capitalize;
-    color: var(--mainBlack);
-    padding: 0.5rem 1.5rem;
-    background: transparent;
-    transition: var(--mainTransition);
-  }
-
-  .sidebar-link:hover {
-    background: var(--primaryColor);
-    color: var(--mainWhite);
-    padding: 0.5rem 1.5rem;
-    text-decoration: none;
   }
 `;
