@@ -10,7 +10,7 @@ import ContactPage from "./pages/ContactPage";
 import DefaultPage from "./pages/DefaultPage";
 import ProductPage from "./pages/ProductPage";
 import SingleProductPage from "./pages/SingleProductPage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 import SideCart from "./components/SideCart";
@@ -33,7 +33,7 @@ function App() {
         <Route path="/products/:id" component={SingleProductPage} />
         <Route component={DefaultPage} />
       </Switch>
-      <Footer /> 
+      <Footer />
     </>
   );
 }

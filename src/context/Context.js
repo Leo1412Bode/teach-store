@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { linkData } from "./LinkData";
+import { socialData } from "./socialData";
 
 const ProductContext = React.createContext();
 
@@ -9,7 +10,9 @@ class ProductProvider extends Component {
     sideBarOpen: false,
     cartOpen: false,
     cartItems: 0,
-    links: linkData,  
+    links: linkData,
+    cart: [],
+    social: socialData,
   };
 
   //Abrir y cerrar Side Bar
@@ -19,8 +22,6 @@ class ProductProvider extends Component {
     });
   };
 
-
-
   //Abrir y cerrar Side Cart
   handleSideCart = () => {
     this.setState({
@@ -28,8 +29,17 @@ class ProductProvider extends Component {
     });
   };
 
+  cartOpen = () => {
+    this.setState({
+      cartOpen: true,
+    });
+  };
 
-
+  closeCart = () => {
+    this.setState({
+      cartOpen: false,
+    });
+  };
   render() {
     return (
       <ProductContext.Provider
