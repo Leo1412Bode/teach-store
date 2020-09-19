@@ -8,7 +8,8 @@ export default function Product({ product }) {
   return (
     <ProductConsumer>
       {(value) => {
-        const { addToCart, setSinglePoduct } = value;
+        const { seeProduct, addToCart } = value;
+
         return (
           <ProductWrapper className="col-10 mx-auto col-sm-8 col-md-6  col-lg-4 my-3">
             <div className="card">
@@ -20,16 +21,18 @@ export default function Product({ product }) {
                   style={{ height: "320px" }}
                 />
                 <div className="product-icons">
-                  <Link
-                    to={`/products/${product.id}`}
-                    onClick={() => setSinglePoduct(product.id)}
-                  >
-                    <FaSearch className="icon" />
+                  <Link to={`/products/${product.id}`}>
+                    <FaSearch
+                      className="icon"
+                      onClick={() => seeProduct(product.id)}
+                    />
                   </Link>
-                  <FaCartPlus
-                    className="icon"
-                    onClick={() => addToCart(product.id)}
-                  />
+                  <Link to={`/products/${product.id}`}>
+                    <FaCartPlus
+                      className="icon"
+                      onClick={() => addToCart(product.id)}
+                    />
+                  </Link>
                 </div>
               </div>
               <div className="card-body d-flex justify-content-between">

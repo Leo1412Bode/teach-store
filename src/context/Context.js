@@ -64,14 +64,17 @@ class ProductProvider extends Component {
   addTotals = () => {};
   // sync storage
   syncStorage = () => {};
+
+  //See product
+  seeProduct = (id) => {
+    console.log(`see that product${id}`);
+  };
+
   //add to cart
   addToCart = (id) => {
     console.log(`add to cart ${id}`);
   };
   // set single product
-  setSingleProduct = (id) => {
-    console.log(`set single product ${id}`);
-  };
 
   // handle sidebar
   handleSidebar = () => {
@@ -98,8 +101,8 @@ class ProductProvider extends Component {
           handleCart: this.handleCart,
           closeCart: this.closeCart,
           openCart: this.openCart,
+          seeProduct: this.seeProduct,
           addToCart: this.addToCart,
-          setSingleProduct: this.setSingleProduct,
         }}
       >
         {this.props.children}
