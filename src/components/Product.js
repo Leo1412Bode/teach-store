@@ -27,12 +27,12 @@ export default function Product({ product }) {
                       onClick={() => seeProduct(product.id)}
                     />
                   </Link>
-                  <Link to={`/products/${product.id}`}>
+                  
                     <FaCartPlus
                       className="icon"
                       onClick={() => addToCart(product.id)}
                     />
-                  </Link>
+             
                 </div>
               </div>
               <div className="card-body d-flex justify-content-between">
