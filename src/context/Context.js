@@ -13,14 +13,13 @@ class ProductProvider extends Component {
     socialIcons: socialData,
     cart: [],
     cartItems: 0,
-    cartSubTotal: 0,
     cartTax: 0,
     cartTotal: 0,
     storeProducts: [],
     filteredProducts: [],
     featuredProducts: [],
     singleProduct: {},
-    loading: false,
+    loading: true,
   };
   componentDidMount() {
     //from contentful items
@@ -57,11 +56,19 @@ class ProductProvider extends Component {
   };
   // get cart from local storage
   getStorageCart = () => {
-    return [];
+    let cart;
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+    } else {
+      cart = [];
+    }
+    return cart;
   };
   // get product from local storage
   getStorageProduct = () => {
-    return {};
+    return localStorage.getItem("singleProduct")
+      ? JSON.parse(localStorage.getItem("singleProduct"))
+      : {};
   };
   // get totals
   getTotals = () => {
@@ -87,7 +94,7 @@ class ProductProvider extends Component {
   //add totals
   addTotals = () => {
     const totals = this.getTotals();
-    this.setState ({
+    this.setState({
       cartItems: totals.cartItems,
       cartSubTotal: totals.subTotal,
       cartTax: totals.tax,
@@ -95,11 +102,18 @@ class ProductProvider extends Component {
     });
   };
   // sync storage
-  syncStorage = () => {};
+  syncStorage = () => {
+    localStorage.setItem("cart", JSON.stringify(this.state.cart));
+  };
 
   //See product
   seeProduct = (id) => {
-    console.log(`see that product${id}`);
+    let product = this.state.storeProducts.find((item) => item.id === id);
+    localStorage.setItem("singleProduct", JSON.stringify(product));
+    this.setState({
+      singleProduct: { ...product },
+      loading: false,
+    });
   };
 
   //add to cart
@@ -142,7 +156,7 @@ class ProductProvider extends Component {
   };
   // hanldle sart
   handleCart = () => {
-    this.setState({ cartOpen: !this.state.sidebarOpen });
+    this.setState({ cartOpen: !this.state.cartOpen });
   };
   //close cart
   closeCart = () => {
@@ -152,6 +166,72 @@ class ProductProvider extends Component {
   openCart = () => {
     this.setState({ cartOpen: true });
   };
+
+  //cart Functionality
+  increment = (id) => {
+    let tempCart = [...this.state.cart];
+    const cartItem = tempCart.find((item) => item.id === id);
+    cartItem.count++;
+    cartItem.total = cartItem.price * cartItem.count;
+    cartItem.total = parseFloat(cartItem.total.toFixed(2));
+    this.setState(
+      {
+        cart: [...tempCart],
+      },
+      () => {
+        this.addTotals();
+        this.syncStorage();
+      }
+    );
+  };
+
+  decrement = (id) => {
+    let tempCart = [...this.state.cart];
+    const cartItem = tempCart.find((item) => item.id === id);
+    cartItem.count = cartItem.count - 1;
+    if (cartItem.count === 0) {
+      this.removeItem(id);
+    } else {
+      cartItem.total = cartItem.price * cartItem.count;
+      cartItem.total = parseFloat(cartItem.total.toFixed(2));
+      this.setState(
+        {
+          cart: [...tempCart],
+        },
+        () => {
+          this.addTotals();
+          this.syncStorage();
+        }
+      );
+    }
+  };
+
+  removeItem = (id) => {
+    let tempCart = [...this.state.cart];
+    tempCart = tempCart.filter((item) => item.id !== id);
+    this.setState(
+      {
+        cart: [...tempCart],
+      },
+      () => {
+        this.addTotals();
+        this.syncStorage();
+      }
+    );
+  };
+
+  clearItem = () => {
+    this.setState(
+      {
+        cart: [],
+      },
+      () => {
+        this.addTotals();
+        this.syncStorage();
+      }
+    );
+  };
+
   render() {
     return (
       <ProductContext.Provider
@@ -163,6 +243,10 @@ class ProductProvider extends Component {
           openCart: this.openCart,
           seeProduct: this.seeProduct,
           addToCart: this.addToCart,
+          increment: this.increment,
+          decrement: this.decrement,
+          removeItem: this.removeItem,
+          clearItem: this.clearItem,
         }}
       >
         {this.props.children}
