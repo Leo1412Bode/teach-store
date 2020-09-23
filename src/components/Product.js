@@ -8,7 +8,7 @@ export default function Product({ product }) {
   return (
     <ProductConsumer>
       {(value) => {
-        const { seeProduct, addToCart } = value;
+        const { setSingleProduct, addToCart } = value;
 
         return (
           <ProductWrapper className="col-10 mx-auto col-sm-8 col-md-6  col-lg-4 my-3">
@@ -24,7 +24,7 @@ export default function Product({ product }) {
                   <Link to={`/products/${product.id}`}>
                     <FaSearch
                       className="icon"
-                      onClick={() => seeProduct(product.id)}
+                      onClick={() => setSingleProduct(product.id)}
                     />
                   </Link>
                   
